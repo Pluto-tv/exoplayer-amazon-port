@@ -411,8 +411,12 @@ public class HlsChunkSource implements HlsTrackSelector.Output {
         chunkMediaSequence = getLiveNextChunkSequenceNumber(previousTsChunk.chunkIndex,
             previousChunkVariantIndex, selectedVariantIndex);
         if (chunkMediaSequence < mediaPlaylist.mediaSequence) {
-          fatalError = new BehindLiveWindowException();
-          return;
+          Log.e("HlsChunkSource", " chunkMediaSequence: " + chunkMediaSequence + "mediaSequence: " + mediaPlaylist.mediaSequence);
+          chunkMediaSequence = getLiveStartChunkSequenceNumber(this.selectedVariantIndex);
+          if (chunkMediaSequence < mediaPlaylist.mediaSequence) {
+            fatalError = new BehindLiveWindowException();
+            return;
+          }
         }
       }
     } else {
