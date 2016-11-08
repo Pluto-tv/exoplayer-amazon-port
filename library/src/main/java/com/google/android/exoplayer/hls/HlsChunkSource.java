@@ -701,6 +701,11 @@ public class HlsChunkSource implements HlsTrackSelector.Output {
     double offsetToLiveInstantSecs = 0;
     for (int i = previousChunkIndex - oldMediaPlaylist.mediaSequence;
          i < oldMediaPlaylist.segments.size(); i++) {
+      if (i < 0) {
+        String errorMessage = "previousChunkIndex: " + previousChunkIndex + " oldMediaPlaylist.mediaSequence: " + oldMediaPlaylist.mediaSequence + " oldMediaPlaylist.segments.size(): " + oldMediaPlaylist.segments.size();
+        Log.w("HlsChunkSource", "Error on getLiveNextChunkSequenceNumber: " + errorMessage);
+        break;
+      }
       offsetToLiveInstantSecs += oldMediaPlaylist.segments.get(i).durationSecs;
     }
     long currentTimeMs = SystemClock.elapsedRealtime();
