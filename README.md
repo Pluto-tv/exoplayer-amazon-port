@@ -20,20 +20,20 @@ Thus, we can import the dependencies in our Android projects:
 
 Project's build.gradle:
 
-``groovy
+```groovy
 allprojects {
     repositories {
         maven { url 'http://appboy.github.io/appboy-android-sdk/sdk'}
     }
-``
+```
 
 Module's build.gradle file:
 
-``groovy
+```groovy
 dependencies {
     compile 'com.google.android.exoplayer:amazon-exoplayer:1.5.10@aar'
     compile 'com.google.android.exoplayer:amazon-exoplayer-ext-okhttp:1.5.10@aar'
 }
-`` 
+``` 
 
 
